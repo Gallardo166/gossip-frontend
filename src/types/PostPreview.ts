@@ -1,4 +1,4 @@
-export type PostType = {
+export type PostPreviewType = {
   id: number,
   title: string,
   body: string,

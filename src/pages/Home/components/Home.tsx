@@ -1,31 +1,33 @@
 import { useState, useEffect } from "react";
-import FilterSystem from "../../../components/FilterSystem";
+import FilterSystem from "./FilterSystem";
 import Post from "./Post";
-import type { PostType } from "../types/PostPreview";
-import { useSearchParams } from "react-router";
+import type { PostPreviewType } from "../../../types/PostPreview";
+import { useOutletContext, useSearchParams } from "react-router";
 import fetchData from "../../../utils/fetchData";
+import { Category } from "../../../types/Category";
 
 const Home = () => {
-  const [posts, setPosts] = useState<PostType[]>([]);
+  const [posts, setPosts] = useState<PostPreviewType[]>([]);
+  const {categories} = useOutletContext<{ categories: Category[] }>();
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const title = searchParams.get("title");
-    if (!title) {
-      fetchData("http://localhost:3000/posts", setPosts);
+    if (searchParams.toString()) {
+      fetchData(`http://localhost:3000/posts?${searchParams.toString()}`, setPosts);
     } else {
-      fetchData(`http://localhost:3000/posts/${title}`, setPosts);
+      fetchData("http://localhost:3000/posts", setPosts);
     }
-    
   }, [searchParams]);
 
   return (
     <>
-      <FilterSystem />
+      <FilterSystem categories={categories} />
       <main>
-        {posts ? posts.map((post, index) => (
-          <Post key={index} post={post} />
-        )) : null}
+        {posts 
+          ? posts.map((post, index) => (
+              <Post key={index} post={post} />
+            ))
+          : null}
       </main>
     </>
   )

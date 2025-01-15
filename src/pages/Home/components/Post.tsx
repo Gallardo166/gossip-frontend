@@ -1,7 +1,7 @@
-import type { PostType } from "../types/PostPreview"
+import type { PostPreviewType } from "../../../types/PostPreview"
 
 type PostProps = {
-  post: PostType
+  post: PostPreviewType
 }
 
 const Post = ({ post } : PostProps) => {

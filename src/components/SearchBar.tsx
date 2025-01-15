@@ -1,8 +1,12 @@
 import { useState } from "react"
-import { Link } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
+import createURL from "../utils/createURL";
 
 const SearchBar = () => {
   const [titleQuery, setTitleQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  console.log(searchParams.toString());
 
   return (
     <div>
@@ -12,7 +16,7 @@ const SearchBar = () => {
         id="title_query"
         value={titleQuery}
         onChange={(e) => setTitleQuery(e.target.value)} />
-      <Link to={titleQuery ? `/query?title=${titleQuery}` : "/"}>Search</Link>
+      <button onClick={() => navigate(createURL("query", titleQuery, searchParams))}>Search</button>
     </div>
   )
 }

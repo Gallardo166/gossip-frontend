@@ -8,7 +8,7 @@ createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Routes>
       <Route element={<App />}>
-        <Route path="/query?" element={<Home />}>
+        <Route path="/" element={<Home />}>
         </Route>
       </Route>
     </Routes>

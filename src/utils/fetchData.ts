@@ -1,4 +1,5 @@
 export default async function fetchData<T>(fetchInput: string, setFn: React.Dispatch<React.SetStateAction<T>>) {
+  console.log(fetchInput);
   try {
     const response = await fetch(
       fetchInput,
