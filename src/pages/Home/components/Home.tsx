@@ -2,40 +2,30 @@ import { useState, useEffect } from "react";
 import FilterSystem from "../../../components/FilterSystem";
 import Post from "./Post";
 import type { PostType } from "../types/PostPreview";
+import { useSearchParams } from "react-router";
+import fetchData from "../../../utils/fetchData";
 
 const Home = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
-
-  async function fetchData() {
-    try {
-      const response = await fetch(
-        "http://localhost:3000/posts",
-        {
-          method: "GET",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          }
-        }
-      );
-      const resJson = await response.json();
-      setPosts(resJson);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const title = searchParams.get("title");
+    if (!title) {
+      fetchData("http://localhost:3000/posts", setPosts);
+    } else {
+      fetchData(`http://localhost:3000/posts/${title}`, setPosts);
+    }
+    
+  }, [searchParams]);
 
   return (
     <>
       <FilterSystem />
       <main>
-        {posts.map((post, index) => (
+        {posts ? posts.map((post, index) => (
           <Post key={index} post={post} />
-        ))}
+        )) : null}
       </main>
     </>
   )
