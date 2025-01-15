@@ -1,20 +1,10 @@
 import { useState, useEffect } from "react";
-import FilterSystem from "./FilterSystem";
-
-type Post = {
-  id: number,
-  title: string,
-  body: string,
-  imageUrl?: string,
-  category: string,
-  username: string,
-  date: string,
-  likeCount: number,
-  commentCount: number,
-}
+import FilterSystem from "../../../components/FilterSystem";
+import Post from "./Post";
+import type { PostType } from "../types/PostPreview";
 
 const Home = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
 
   async function fetchData() {
     try {
@@ -44,12 +34,7 @@ const Home = () => {
       <FilterSystem />
       <main>
         {posts.map((post, index) => (
-          <div key={index}>
-            <p>{post.title}</p>
-            <p>{post.body}</p>
-            <p>{post.username}</p>
-            <p>{post.likeCount}</p>
-          </div>
+          <Post key={index} post={post} />
         ))}
       </main>
     </>
