@@ -8,6 +8,7 @@ export interface UnparsedPostType  {
   username: string;
   date: string;
   likeCount: number;
+  commentCount: number;
   comments: string[];
 }
 
@@ -19,6 +20,7 @@ export interface PostType {
   username: string;
   date: string;
   likeCount: number;
+  commentCount: number;
   comments: CommentType[] | null;
 }
 

@@ -17,7 +17,7 @@ const PostPage = () => {
     <div>
       <h1>{post.title}</h1>
       <p>{post.body}</p>
-      <CommentSection comments={post.comments} />
+      <CommentSection commentCount={post.commentCount} comments={post.comments} />
     </div>
 
   )
