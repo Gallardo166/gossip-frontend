@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import fetchData from "../../utils/fetchData";
-import { Post } from "../../types/Post";
+import { PostType } from "../../types/Post";
 import parseComments from "../../utils/parseComments";
+import CommentSection from "./CommentSection";
 
 const PostPage = () => {
   const { id } = useParams();
-  const [post, setPost] = useState<Post>({} as Post);
+  const [post, setPost] = useState<PostType>({} as PostType);
 
   useEffect(() => {
     fetchData(`http://localhost:3000/post/${id}`, setPost, parseComments);
@@ -16,7 +17,9 @@ const PostPage = () => {
     <div>
       <h1>{post.title}</h1>
       <p>{post.body}</p>
+      <CommentSection comments={post.comments} />
     </div>
+
   )
 }
 

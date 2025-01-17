@@ -28,8 +28,8 @@ const Home = () => {
       <button onClick={() => navigate(createURL("sort", "favourite", searchParams))}>By favourite</button>
       <main>
         {posts 
-          ? posts.map((post, index) => (
-              <Post key={index} post={post} />
+          ? posts.map((post) => (
+              <Post key={post.id} post={post} />
             ))
           : null}
       </main>
