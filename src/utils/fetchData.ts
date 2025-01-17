@@ -1,11 +1,11 @@
 export default async function fetchData<T, data>(
-  fetchInput: string,
+  url: string,
   setFn: React.Dispatch<React.SetStateAction<T>>,
   manipulateFn?: (data: data) => T) {
-    console.log(fetchInput);
+    console.log(url);
     try {
       const response = await fetch(
-        fetchInput,
+        url,
         {
           method: "GET",
           mode: "cors",

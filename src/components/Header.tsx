@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 const Header = () => {
   return (
     <nav>
-      <h1>Gossip</h1>
+      <Link to="/"><h1>Gossip</h1></Link>
       <SearchBar />
-      <p>Log In</p>
+      <Link to="/register">Sign up</Link>
     </nav>
   )
 }
