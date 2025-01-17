@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router";
-import { Category } from "../../../types/Category";
-import createURL from "../../../utils/createURL";
+import { Category } from "../../types/Category";
+import createURL from "../../utils/createURL";
 
 const FilterSystem = ({ categories }: { categories: Category[] }) => {
   const [searchParams] = useSearchParams();
@@ -9,7 +9,7 @@ const FilterSystem = ({ categories }: { categories: Category[] }) => {
   
   return (
     <select
-      defaultValue={category ? category : ""}
+      value={category ? category : ""}
       onChange={(e) => navigate(createURL("category", e.target.value, searchParams))}
     >
       <option value="">

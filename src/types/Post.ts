@@ -1,5 +1,4 @@
-export type PostPreviewType = {
-  id: number;
+export type Post = {
   title: string;
   body: string;
   imageUrl?: string;
@@ -7,5 +6,5 @@ export type PostPreviewType = {
   username: string;
   date: string;
   likeCount: number;
-  commentCount: number;
+  comments: string[] | null;
 }

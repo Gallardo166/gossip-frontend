@@ -1,12 +1,14 @@
-import type { PostPreviewType } from "../../../types/PostPreview"
+import { useNavigate } from "react-router"
+import type { PostPreviewType } from "../../types/PostPreview"
 
 type PostProps = {
   post: PostPreviewType
 }
 
 const Post = ({ post } : PostProps) => {
+  const navigate = useNavigate();
   return (
-    <div>
+    <div onClick={() => navigate(`/post/${post.id}`)}>
       <div>
         <div>
           <p>{post.username}</p>

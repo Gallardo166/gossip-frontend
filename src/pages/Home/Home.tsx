@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import FilterSystem from "./FilterSystem";
 import Post from "./Post";
-import type { PostPreviewType } from "../../../types/PostPreview";
+import type { PostPreviewType } from "../../types/PostPreview";
 import { useNavigate, useOutletContext, useSearchParams } from "react-router";
-import fetchData from "../../../utils/fetchData";
-import { Category } from "../../../types/Category";
-import createURL from "../../../utils/createURL";
+import fetchData from "../../utils/fetchData";
+import { Category } from "../../types/Category";
+import createURL from "../../utils/createURL";
 
 const Home = () => {
   const [posts, setPosts] = useState<PostPreviewType[]>([]);

@@ -15,7 +15,10 @@ const SearchBar = () => {
         name="titleQuery"
         id="title_query"
         value={titleQuery}
-        onChange={(e) => setTitleQuery(e.target.value)} />
+        onChange={(e) => setTitleQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") navigate(createURL("query", titleQuery, searchParams));
+        }} />
       <button onClick={() => navigate(createURL("query", titleQuery, searchParams))}>Search</button>
     </div>
   )
