@@ -22,11 +22,7 @@ export async function fetchData<T, data>(
     }
 }
 
-export async function fetchProtectedData<T>(
-  url: string,
-  setFn: React.Dispatch<React.SetStateAction<T>>,
-  token: string,
-  formData?: object) {
+export async function getProtected<T>(url: string, token: string, setFn: React.Dispatch<React.SetStateAction<T>>) {
     console.log(url);
     try {
       const response = await fetch(
@@ -38,11 +34,29 @@ export async function fetchProtectedData<T>(
             "Content-Type": "application/json",
             "Authorization": token,
           },
-          body: formData ? JSON.stringify(formData) : null
         }
       );
       const resJson = await response.json();
-      setFn(resJson);
+      if (setFn) setFn(resJson);
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+export async function postProtected(url: string, token: string, formData: FormData) {
+    console.log(url);
+    try {
+      await fetch(
+        url,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Authorization": token,
+          },
+          body: formData,
+        }
+      );
     } catch (err) {
       console.log(err);
     }

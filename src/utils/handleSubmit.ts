@@ -38,7 +38,6 @@ export async function handleLogin(
           body: JSON.stringify(formData)
         }
       );
-      console.log(response.body);
       if (response.status === 400) {
         throw new Error(await response.text());
       }

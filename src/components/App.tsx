@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
 import { useEffect, useState } from "react";
-import { fetchData, fetchProtectedData } from "../utils/fetchData";
+import { fetchData, getProtected } from "../utils/fetchData";
 import Cookies from "js-cookie";
 import { User } from "../types/AuthContext";
 import { AuthContext } from "../contexts";
@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     console.log(token);
-    if (token) fetchProtectedData("http://localhost:3000/user", setUser, token);
+    if (token) getProtected("http://localhost:3000/user", token, setUser);
     fetchData("http://localhost:3000/categories", setCategories);
   }, [token]);
 

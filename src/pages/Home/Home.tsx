@@ -7,6 +7,7 @@ import { fetchData } from "../../utils/fetchData";
 import { Category } from "../../types/Category";
 import createURL from "../../utils/createURL";
 import { AuthContext } from "../../contexts";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [posts, setPosts] = useState<PostPreviewType[]>([]);
@@ -35,7 +36,7 @@ const Home = () => {
             ))
           : null}
       </main>
-      {user ? <button>Create post</button> : null}
+      {user ? <Link to="/user/create">Create post</Link> : null}
     </>
   )
 }

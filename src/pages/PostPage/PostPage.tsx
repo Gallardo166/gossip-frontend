@@ -12,11 +12,12 @@ const PostPage = () => {
   useEffect(() => {
     fetchData(`http://localhost:3000/post/${id}`, setPost, parseComments);
   }, [id]);
-  if (post) console.log(post);
+  
   return (
     <div>
       <h1>{post.title}</h1>
       <p>{post.body}</p>
+      {post.imageUrl ? <img src={post.imageUrl} /> : null}
       <CommentSection commentCount={post.commentCount} comments={post.comments} />
     </div>
 
