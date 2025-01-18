@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import fetchData from "../../utils/fetchData";
+import { fetchData } from "../../utils/fetchData";
 import { PostType } from "../../types/Post";
 import parseComments from "../../utils/parseComments";
 import CommentSection from "./CommentSection";

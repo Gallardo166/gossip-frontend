@@ -1,13 +1,18 @@
-import { useState } from "react"
-import handleSubmit from "../../utils/handleSubmit";
+import { useContext, useState } from "react"
+import { handleLogin } from "../../utils/handleSubmit";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../../contexts";
 
-const SignupPage = () => {
+const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setUser, setToken } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
-    <form onSubmit={() => {
-      handleSubmit("http://localhost:3000/user", username, password);
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      if (setUser && setToken) handleLogin({username, password}, setUser, setToken);
     }}>
       <div>
         <label htmlFor="username">Username</label>
@@ -31,9 +36,9 @@ const SignupPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit">Register</button>
+      <button type="submit" onClick={() => navigate("/")}>Log In</button>
     </form>
   )
 }
 
-export default SignupPage;
+export default LoginPage;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CommentType } from "../../types/Comment";
-import fetchData from "../../utils/fetchData";
+import { fetchData } from "../../utils/fetchData";
 
 type CommentProps = {
   comment: CommentType

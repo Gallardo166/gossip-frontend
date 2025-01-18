@@ -6,7 +6,6 @@ const SearchBar = () => {
   const [titleQuery, setTitleQuery] = useState("");
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  console.log(searchParams.toString());
 
   return (
     <div>
