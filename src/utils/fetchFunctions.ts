@@ -108,6 +108,27 @@ export async function putProtected(url: string, token: string, data: object) {
   }
 }
 
+//DELETE with authorization
+export async function deleteProtected(url: string, token: string, data: object) {
+  console.log(url);
+  try {
+    await fetch(
+      url,
+      {
+        method: "DELETE",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token,
+        },
+        body: JSON.stringify(data),
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 //authorization functions
 
 export async function handleSignup(formData: object) {

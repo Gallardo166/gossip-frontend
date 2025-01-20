@@ -3,6 +3,7 @@ import type { PostPreviewType } from "../../types/PostPreview"
 import { useContext } from "react"
 import { AuthContext } from "../../contexts"
 import { Link } from "react-router-dom"
+import { deleteProtected } from "../../utils/fetchFunctions"
 
 type PostProps = {
   post: PostPreviewType
@@ -10,7 +11,12 @@ type PostProps = {
 
 const Post = ({ post } : PostProps) => {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
+
+  async function handleDelete() {
+    await deleteProtected("http://localhost:3000/post", token, { id: post.id.toString() });
+    location.reload();
+  }
 
   return (
     <div>
@@ -30,7 +36,10 @@ const Post = ({ post } : PostProps) => {
       <div>
         {post.imageUrl ? <img src={post.imageUrl} /> : null}
         {post.username === user?.username
-          ? <Link to="/user/edit" state={{post}}>Edit post</Link>
+          ? <div>
+              <Link to="/user/edit" state={{post}}>Edit post</Link>
+              <button onClick={handleDelete}>Delete</button>
+            </div>
           : null}
       </div>
     </div>

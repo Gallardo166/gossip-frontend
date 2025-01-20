@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { CommentType } from "../../types/Comment";
-import { fetchData, postProtected, putProtected } from "../../utils/fetchFunctions";
+import { deleteProtected, fetchData, postProtected, putProtected } from "../../utils/fetchFunctions";
 import { AuthContext } from "../../contexts";
 import { useParams } from "react-router";
 import { getDate } from "../../utils/formatDate";
@@ -36,6 +36,11 @@ const Comment = ({ comment }: CommentProps) => {
       date: getDate(),
     };
     await putProtected("http://localhost:3000/comment", token, data);
+    location.reload();
+  }
+
+  async function handleDelete() {
+    await deleteProtected("http://localhost:3000/comment", token, { id: comment.id.toString() });
     location.reload();
   }
 
@@ -86,8 +91,12 @@ const Comment = ({ comment }: CommentProps) => {
                 Submit
               </button>
             </div>
-          : <button onClick={() => setIsEditing(true)}>Edit comment</button>
+          : <div>
+              <button onClick={() => setIsEditing(true)}>Edit comment</button>
+              <button onClick={handleDelete}>Delete comment</button>
+            </div>
         : null}
+
       </div>
     </div>
   )
