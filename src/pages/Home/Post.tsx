@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router"
 import type { PostPreviewType } from "../../types/PostPreview"
+import { useContext } from "react"
+import { AuthContext } from "../../contexts"
+import { Link } from "react-router-dom"
 
 type PostProps = {
   post: PostPreviewType
@@ -7,10 +10,11 @@ type PostProps = {
 
 const Post = ({ post } : PostProps) => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   return (
-    <div onClick={() => navigate(`/post/${post.id}`)}>
-      <div>
+    <div>
+      <div onClick={() => navigate(`/post/${post.id}`)}>
         <div>
           <p>{post.username}</p>
           <p>{post.date}</p>
@@ -25,6 +29,9 @@ const Post = ({ post } : PostProps) => {
       </div>
       <div>
         {post.imageUrl ? <img src={post.imageUrl} /> : null}
+        {post.username === user?.username
+          ? <Link to="/user/edit" state={{post}}>Edit post</Link>
+          : null}
       </div>
     </div>
   )

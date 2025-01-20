@@ -17,13 +17,13 @@ const CommentSection = ({commentCount, comments}: CommentSectionProps) => {
   const { user, token } = useContext(AuthContext);
   const { id } = useParams();
 
-  function handleComment() {
+  async function handleComment() {
     const data = {
       body: comment,
       postId: Number(id),
       date: getDate(),
     };
-    postProtected("http://localhost:3000/comment", token, data);
+    await postProtected("http://localhost:3000/comment", token, data);
     location.reload();
   }
 

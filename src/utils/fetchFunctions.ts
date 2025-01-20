@@ -67,6 +67,47 @@ export async function postProtected(url: string, token: string, data: object) {
   }
 }
 
+//PUT with multiform/form-data and authorization
+export async function putFormProtected(url: string, token: string, formData: FormData) {
+  console.log(url);
+  try {
+    await fetch(
+      url,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Authorization": token,
+        },
+        body: formData,
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//PUT with application/json and authorization
+export async function putProtected(url: string, token: string, data: object) {
+  console.log(url);
+  try {
+    await fetch(
+      url,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token,
+        },
+        body: JSON.stringify(data),
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 //authorization functions
 
 export async function handleSignup(formData: object) {
