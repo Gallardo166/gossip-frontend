@@ -5,6 +5,6 @@ import { AuthContextType } from "./types/AuthContext";
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   setUser: null,
-  token: null,
+  token: "",
   setToken: null,
 });

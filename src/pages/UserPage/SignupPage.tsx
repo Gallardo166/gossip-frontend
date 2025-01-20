@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { handleSignup } from "../../utils/handleSubmit";
+import { handleSignup } from "../../utils/fetchFunctions";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");

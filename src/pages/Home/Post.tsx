@@ -7,6 +7,7 @@ type PostProps = {
 
 const Post = ({ post } : PostProps) => {
   const navigate = useNavigate();
+
   return (
     <div onClick={() => navigate(`/post/${post.id}`)}>
       <div>
@@ -16,13 +17,14 @@ const Post = ({ post } : PostProps) => {
         </div>
         <h1>{post.title}</h1>
         <h2>{post.category}</h2>
-        <p>{post.body}</p>
+        <p className="newLine">{post.body}</p>
         <div>
           <p>{post.likeCount}</p>
           <p>{post.commentCount}</p>
         </div>
       </div>
       <div>
+        {post.imageUrl ? <img src={post.imageUrl} /> : null}
       </div>
     </div>
   )

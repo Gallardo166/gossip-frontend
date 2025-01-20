@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { handleLogin } from "../../utils/handleSubmit";
+import { handleLogin } from "../../utils/fetchFunctions";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../contexts";
 

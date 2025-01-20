@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { useOutletContext } from "react-router";
 import { Category } from "../../types/Category";
-import { postProtected } from "../../utils/fetchData";
+import { postFormProtected } from "../../utils/fetchFunctions";
 import { AuthContext } from "../../contexts";
 import { getDate } from "../../utils/formatDate";
 
@@ -19,10 +19,11 @@ const CreatePost = () => {
       const data = new FormData();
       data.append("title", title);
       data.append("body", body);
+      console.log(body);
       if (file) data.append("file", file);
       data.append("category", category.toString());
       data.append("date", getDate())
-      if (token) postProtected("http://localhost:3000/post", token, data)
+      if (token) postFormProtected("http://localhost:3000/post", token, data)
     }}>
       <label htmlFor="title">Title</label>
       <input
