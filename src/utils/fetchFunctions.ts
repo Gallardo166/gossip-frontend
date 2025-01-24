@@ -6,7 +6,7 @@ export async function fetchData<T, data>(
   url: string,
   setFn: React.Dispatch<React.SetStateAction<T>>,
   manipulateFn?: (data: data) => T) {
-    console.log(url);
+    console.log("test");
     try {
       const response = await fetch(
         url,

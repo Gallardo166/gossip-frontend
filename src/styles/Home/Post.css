@@ -32,7 +32,7 @@ div.cardActionsLeft {
   gap: 8px;
 }
 
-div.likes, div.comments {
+div.likes, div.commentsAction {
   display: flex;
   align-items: center;
 }
@@ -42,16 +42,16 @@ button.likeButton, button.commentButton {
   align-items: center;
 }
 
-a.editButton {
+a.editPostButton {
   display: flex;
   align-items: center;
 }
 
-svg.heartIcon {
+svg.heartIcon, a.editPostButton, button.deletePostButton {
   transition: transform 0.2s;
 }
 
-svg.heartIcon:hover, a.editButton:hover, button.deleteButton:hover {
+svg.heartIcon:hover, a.editPostButton:hover, button.deletePostButton:hover {
   transition: transform 0.2s;
   transform: scale(120%);
 }
@@ -62,14 +62,14 @@ div.cardActionsRight {
   align-items: center;
 }
 
-button.deleteButton {
+button.deletePostButton {
   background: none;
   border: none;
   display: flex;
   align-items: center;
 }
 
-button.deleteButton:hover {
+button.deletePostButton:hover {
   cursor: pointer;
 }
 
@@ -77,7 +77,7 @@ button.deleteButton:hover {
   margin-bottom: 16px;
 }
 
-.postBody {
+.postBodyPreview {
   white-space: pre-wrap;
   text-overflow: ellipsis;
   overflow: hidden;

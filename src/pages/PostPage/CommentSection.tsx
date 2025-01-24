@@ -5,6 +5,9 @@ import { AuthContext } from "../../contexts";
 import { postProtected } from "../../utils/fetchFunctions";
 import { getDate } from "../../utils/formatDate";
 import { useParams } from "react-router";
+import "../../styles/PostPage/CommentSection.css";
+import { Button, Divider, Typography } from "@mui/material";
+import CommentField from "./CommentField";
 
 type CommentSectionProps = {
   commentCount: number,
@@ -29,28 +32,38 @@ const CommentSection = ({commentCount, comments}: CommentSectionProps) => {
 
   return (
     <div>
-      <p>Comments {commentCount}</p>
-      {comments?.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
-      {user && token
-          ? isCommenting
-            ? <div>
-                <input
-                  type="text"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleComment();
-                  }}
-                />
-                <button
-                  onClick={handleComment}>
-                  Submit
-                </button>
-              </div>
-            : <button onClick={() => setIsCommenting(true)}>Comment</button>
+      <div className="commentSectionHeader">
+        <Typography variant="h6">
+          Comments {commentCount}
+        </Typography>
+        {user
+          ? <Button className="commentButton" onClick={() => setIsCommenting(true)}>
+              Comment
+            </Button>
           : null}
+      </div>
+      {user && isCommenting
+          ? <div className="addCommentField">
+              <CommentField
+                  placeholder="Add a comment..."
+                  value={comment}
+                  setValue={setComment}
+                  handleClear={() => {
+                    setComment("");
+                    setIsCommenting(false);
+                  }}
+                  handleSubmit={handleComment}
+                />
+            </div>
+          : null}
+      <div className="comments">
+        {comments?.map((comment) => (
+          <>
+            <Divider sx={{bgcolor:"#757375"}} />
+            <Comment padding="0" key={comment.id} comment={comment} />
+          </>
+        ))}
+      </div>
     </div>
   )
 }

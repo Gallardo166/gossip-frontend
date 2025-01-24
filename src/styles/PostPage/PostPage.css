@@ -1,0 +1,34 @@
+div.post {
+  margin: 40px auto;
+  padding-top: 20px;
+  width: min(76%, 960px);
+}
+
+div.postContent {
+  display: flex;
+  gap: 8px;
+}
+
+div.likeColumn {
+  padding-top: 12px;
+}
+
+div.contentColumn {
+  padding-top: 6px;
+  padding-left: 12px;
+}
+
+p.likeCount.MuiTypography-root {
+  margin-left: 0;
+  text-align: center;
+}
+
+p.postBody {
+  margin: 16px 0 32px 0;
+}
+
+img.postImage {
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 16px;
+}

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import "../../styles/Home/Home.css";
 import { Fab } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import LoadingPosts from "./LoadingPosts";
 
 const Home = () => {
   const [posts, setPosts] = useState<PostPreviewType[]>([]);
@@ -30,26 +31,26 @@ const Home = () => {
   return (
     <>
       <div className="controls">
-        <div className="controlsLeft">
-          <FilterSystem categories={categories} />
-          <SortingSystem />
+          <div className="controlsLeft">
+            <FilterSystem categories={categories} />
+            <SortingSystem />
+          </div>
+          <div className="controlsRight">
+            {user
+              ? <Link to="/user/create">
+                  <Fab color="primary" size="medium" aria-label="create" className="createPost">
+                  <AddIcon />
+                </Fab></Link>
+              : null}
+          </div>
         </div>
-        <div className="controlsRight">
-          {user 
-            ? <Link to="/user/create">
-                <Fab color="primary" size="medium" aria-label="create" className="createPost">
-                <AddIcon />
-              </Fab></Link>
-            : null}
-        </div>
-      </div>
-      <section className="posts">
-        {posts
-          ? posts.map((post) => (
-              <Post key={post.id} post={post} />
-            ))
-          : null}
-      </section>
+        <section className="posts">
+          {posts
+            ? posts.map((post) => (
+                <Post key={post.id} post={post} />
+              ))
+            : <LoadingPosts />}
+        </section>
     </>
   )
 }

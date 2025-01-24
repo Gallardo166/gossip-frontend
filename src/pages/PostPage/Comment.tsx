@@ -1,16 +1,25 @@
 import { useContext, useState } from "react";
 import { CommentType } from "../../types/Comment";
-import { deleteProtected, fetchData, postProtected, putProtected } from "../../utils/fetchFunctions";
+import { fetchData, postProtected, putProtected } from "../../utils/fetchFunctions";
 import { AuthContext } from "../../contexts";
 import { useParams } from "react-router";
-import { getDate } from "../../utils/formatDate";
+import { formatDate, getDate } from "../../utils/formatDate";
+import { Button, IconButton, Typography } from "@mui/material";
+import ReplyIcon from '@mui/icons-material/Reply';
+import "../../styles/PostPage/Comment.css";
+import CommentField from "./CommentField";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteModal from "./DeleteModal";
 
 type CommentProps = {
+  padding: string,
   comment: CommentType
 }
 
-const Comment = ({ comment }: CommentProps) => {
+const Comment = ({ padding, comment }: CommentProps) => {
+  const [body, setBody] = useState(comment.body);
   const [replies, setReplies] = useState<CommentType[] | null>(null);
+  const [repliesOpen, setRepliesOpen] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [reply, setReply] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -21,7 +30,7 @@ const Comment = ({ comment }: CommentProps) => {
   async function handleReply() {
     const data = {
       body: reply,
-      parentId: Number(comment.id),
+      parentId: comment.id,
       postId: Number(id),
       date: getDate(),
     };
@@ -36,67 +45,81 @@ const Comment = ({ comment }: CommentProps) => {
       date: getDate(),
     };
     await putProtected("http://localhost:3000/comment", token, data);
-    location.reload();
-  }
-
-  async function handleDelete() {
-    await deleteProtected("http://localhost:3000/comment", token, { id: comment.id.toString() });
-    location.reload();
+    setBody(edit);
+    setIsEditing(false);
   }
 
   return (
-    <div>
-      <p>{comment.username}</p>
-      <p>{comment.body}</p>
-      {!replies && comment.replyCount
-        ? <button onClick={() => fetchData(`http://localhost:3000/comments?parentId=${comment.id}`, setReplies)}>
-            Replies {comment.replyCount}
-          </button>
-        : null}
-      <div>
-        {replies ? replies.map((reply) => (
-          <Comment key={reply.id} comment={reply} />
-        )) : null}
-        {user && token
-          ? isReplying
-            ? <div>
-                <input
-                  type="text"
-                  value={reply}
-                  onChange={(e) => setReply(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleReply();
-                  }}
-                />
-                <button
-                  onClick={handleReply}>
-                  Submit
-                </button>
-              </div>
-            : <button onClick={() => setIsReplying(true)}>Reply</button>
+    <div style={{paddingLeft: padding}}>
+      <Typography sx={{color:"white"}}>
+        {comment.username} &middot; {formatDate(comment.date)}
+      </Typography>
+      <div className="commentBody">
+        {isEditing
+          ? <CommentField
+              placeholder="Edit your comment..."
+              value={edit}
+              setValue={setEdit}
+              handleClear={() => {
+                setEdit(comment.body);
+                setIsEditing(false);
+              }}
+              handleSubmit={handleEdit} />
+          : <Typography sx={{color:"#d4d0d9"}}>
+              {body}
+            </Typography>}
+        {user
+          ? <div className="commentActions">
+              <IconButton className="replyButton" onClick={() => {
+                setIsReplying(true);
+                setIsEditing(false);
+              }}>
+                <ReplyIcon sx={{color:"white"}} />
+              </IconButton>
+              {user.username === comment.username
+                ? <>
+                    <IconButton className="editCommentButton" onClick={() => {
+                      setIsEditing(true);
+                      setIsReplying(false);
+                      setReply("");
+                    }}>
+                      <EditIcon sx={{color:"white"}} />
+                    </IconButton>
+                    <DeleteModal token={token} comment={comment} />
+                  </>
+              : null}
+          </div>
           : null}
-        {user && user.username === comment.username
-          ? isEditing
-          ? <div>
-              <input
-                type="text"
-                value={edit}
-                onChange={(e) => setEdit(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleEdit();
-                }}
-              />
-              <button
-                onClick={handleEdit}>
-                Submit
-              </button>
-            </div>
-          : <div>
-              <button onClick={() => setIsEditing(true)}>Edit comment</button>
-              <button onClick={handleDelete}>Delete comment</button>
-            </div>
+      </div>
+      {isReplying
+        ? <CommentField
+            placeholder="Write a reply..."
+            value={reply}
+            setValue={setReply}
+            handleClear={() => {
+              setReply("");
+              setIsReplying(false);
+            }}
+            handleSubmit={handleReply} />
         : null}
-
+      {comment.replyCount
+        ? !repliesOpen
+          ? <Button className="repliesButton" onClick={() => {
+              if (!replies) fetchData(`http://localhost:3000/comments?parentId=${comment.id}`, setReplies);
+              setRepliesOpen(true);
+            }}>
+              Show {comment.replyCount} {comment.replyCount > 1 ? "Replies" : "Reply"}
+            </Button>
+          : <Button className="repliesButton" onClick={() => setRepliesOpen(false)}>
+              Hide {comment.replyCount} {comment.replyCount > 1 ? "Replies" : "Reply"}
+            </Button>
+        : null}
+      <div className="replies">
+        {repliesOpen && replies
+          ? replies.map((reply, index) => (
+              <Comment padding="20px" key={index} comment={reply} />
+            ))
+          : null}
       </div>
     </div>
   )

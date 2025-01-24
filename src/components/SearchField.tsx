@@ -39,15 +39,15 @@ const SearchField = ({ titleQuery, setTitleQuery, handleSearch }: SearchFieldPro
             if (e.key === "Enter") {
               handleSearch(titleQuery);
             }
-          }} />
-          {titleQuery 
-            ? <Button className="clearButton" onClick={() => {
-                setTitleQuery("");
-                handleSearch("");
-              }}>
-                <ClearIcon />
-              </Button>
-            : null}
+      }} />
+      {titleQuery 
+        ? <Button className="clearButton" onClick={() => {
+            setTitleQuery("");
+            handleSearch("");
+          }}>
+            <ClearIcon />
+          </Button>
+        : null}
     </div>
   )
 }

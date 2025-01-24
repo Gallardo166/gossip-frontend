@@ -1,0 +1,38 @@
+div.commentBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.commentFieldContainer {
+  display: flex;
+  flex-grow: 1;
+}
+
+div.commentField {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+div.MuiInput-root::before {
+  border-bottom: 1px solid rgb(82, 82, 82);
+}
+
+textarea.MuiInputBase-input {
+  color: white;
+  padding-right: 26px;
+}
+
+button.clearButton {
+  position: absolute;
+  right: 0;
+}
+
+div.replies {
+  border-left: 1px solid #757375;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

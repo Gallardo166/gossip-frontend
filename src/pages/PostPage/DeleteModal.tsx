@@ -2,13 +2,13 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import { useState } from "react"
 import { deleteProtected } from "../../utils/fetchFunctions";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { PostPreviewType } from "../../types/PostPreview";
+import { CommentType } from "../../types/Comment";
 
 type DeleteModalProps = {
   token: string,
-  post: PostPreviewType,
+  comment: CommentType,
 }
-const DeleteModal = ({token, post}: DeleteModalProps) => {
+const DeleteModal = ({token, comment}: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
 
   function handleOpen(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -22,20 +22,20 @@ const DeleteModal = ({token, post}: DeleteModalProps) => {
   }
 
   async function handleDelete() {
-    await deleteProtected("http://localhost:3000/post", token, { id: post.id.toString() });
+    await deleteProtected("http://localhost:3000/comment", token, { id: comment.id });
     location.reload();
   }
 
   return (
     <>
-      <IconButton onClick={handleOpen} className="deletePostButton">
+      <IconButton onClick={handleOpen} className="deleteCommentButton">
         <DeleteIcon sx={{color:"white"}} />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Delete Post</DialogTitle>
+        <DialogTitle>Delete Comment</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            You are about to delete this post. Are you sure?
+            You are about to delete this comment. Are you sure?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

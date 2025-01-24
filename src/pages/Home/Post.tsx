@@ -50,7 +50,7 @@ const Post = ({ post } : PostProps) => {
             {post.title}
           </Typography>
           <Chip color="primary" label={post.category} sx={{fontSize: "14px"}} />
-          <Typography className="postBody" sx={{color:"#d4d0d9"}}>
+          <Typography className="postBodyPreview" sx={{color:"#d4d0d9"}}>
             {post.body}
           </Typography>
         </CardContent>
@@ -82,7 +82,7 @@ const Post = ({ post } : PostProps) => {
                 {likeCount}
               </Typography>
             </div>
-            <div className="comments">
+            <div className="commentsAction">
               <IconButton 
                 className="commentButton"
                 aria-label="comment"
@@ -102,7 +102,7 @@ const Post = ({ post } : PostProps) => {
           </div>
           {post.username === user?.username
             ? <div className="cardActionsRight">
-                <Link onClick={(e) => e.stopPropagation()} to="/user/edit" state={{post}} className="editButton"><EditIcon /></Link>
+                <Link onClick={(e) => e.stopPropagation()} to="/user/edit" state={{post}} className="editPostButton"><EditIcon /></Link>
                 <DeleteModal token={token} post={post} />
               </div>
             : null}
