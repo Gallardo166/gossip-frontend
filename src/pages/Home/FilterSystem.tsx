@@ -1,5 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router";
 import { Category } from "../../types/Category";
+import { MenuItem } from "@mui/material";
+import CustomSelect from "./CustomSelect";
 import createURL from "../../utils/createURL";
 
 const FilterSystem = ({ categories }: { categories: Category[] }) => {
@@ -8,21 +10,24 @@ const FilterSystem = ({ categories }: { categories: Category[] }) => {
   const category = searchParams.get("category");
   
   return (
-    <select
-      value={category ? category : ""}
-      onChange={(e) => navigate(createURL("category", e.target.value, searchParams))}
+    <CustomSelect
+      value={category ? category : "All"}
+      onChange={(e) => {
+        const param = e.target.value === "All" ? "" : e.target.value
+        navigate(createURL("category", param, searchParams));
+      }}
     >
-      <option value="">
+      <MenuItem value="All">
         All
-      </option>
+      </MenuItem>
       {categories ? categories.map((category, index) => (
-        <option 
+        <MenuItem 
           value={category.name}
           key={index}>
           {category.name}
-        </option>
+        </MenuItem>
       )): null}
-    </select>
+    </CustomSelect>
   )
 }
 

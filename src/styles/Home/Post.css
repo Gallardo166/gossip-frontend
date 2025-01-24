@@ -1,0 +1,92 @@
+div.MuiCard-root {
+  border: solid 1px #d4d0d9;
+  border-radius: 8px;
+  background: none;
+}
+
+div.MuiCard-root:hover {
+  background-color: #2b2a2b;
+}
+
+img.MuiCardMedia-img {
+  border-radius: 16px;
+  width: 94%;
+  margin: 16px auto;
+  max-height: 440px;
+  object-fit: cover;
+}
+
+div.content {
+  padding: 24px 24px 12px 24px;
+}
+
+div.cardActions {
+  padding: 0 12px 12px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.cardActionsLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+div.likes, div.comments {
+  display: flex;
+  align-items: center;
+}
+
+button.likeButton, button.commentButton {
+  display: flex;
+  align-items: center;
+}
+
+a.editButton {
+  display: flex;
+  align-items: center;
+}
+
+svg.heartIcon {
+  transition: transform 0.2s;
+}
+
+svg.heartIcon:hover, a.editButton:hover, button.deleteButton:hover {
+  transition: transform 0.2s;
+  transform: scale(120%);
+}
+
+div.cardActionsRight {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+button.deleteButton {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+button.deleteButton:hover {
+  cursor: pointer;
+}
+
+.MuiChip-root {
+  margin-bottom: 16px;
+}
+
+.postBody {
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+p.MuiTypography-root.MuiTypography-body1 {
+  margin-left: 2px;
+}

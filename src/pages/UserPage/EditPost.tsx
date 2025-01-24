@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate, useOutletContext } from "react-router";
 import { Category } from "../../types/Category";
 import { putFormProtected } from "../../utils/fetchFunctions";
@@ -16,6 +16,10 @@ const EditPost = () => {
   const [file, setFile] = useState<File | null>(null)
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   return (
     <form onSubmit={async (e) => {

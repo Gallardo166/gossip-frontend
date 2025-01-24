@@ -1,0 +1,27 @@
+.header {
+  position: fixed;
+  width: 100%;
+  top: -0.01px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#3a373d;
+  z-index: 1;
+}
+
+.title {
+  margin: 24px 0 24px 24px;
+  font-size: 2rem;
+  font-family: Roboto;
+}
+
+.loginButtons {
+  display: flex;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+Button.logoutButton {
+  margin-right: 16px;
+}

@@ -1,20 +1,22 @@
 import { useState, useEffect, useContext } from "react";
 import FilterSystem from "./FilterSystem";
+import SortingSystem from "./SortingSystem";
 import Post from "./Post";
 import type { PostPreviewType } from "../../types/PostPreview";
-import { useNavigate, useOutletContext, useSearchParams } from "react-router";
+import { useOutletContext, useSearchParams } from "react-router";
 import { fetchData } from "../../utils/fetchFunctions";
 import { Category } from "../../types/Category";
-import createURL from "../../utils/createURL";
 import { AuthContext } from "../../contexts";
 import { Link } from "react-router-dom";
+import "../../styles/Home/Home.css";
+import { Fab } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 const Home = () => {
   const [posts, setPosts] = useState<PostPreviewType[]>([]);
   const {categories} = useOutletContext<{ categories: Category[] }>();
   const { user } = useContext(AuthContext);
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (searchParams.toString()) {
@@ -22,21 +24,32 @@ const Home = () => {
     } else {
       fetchData("http://localhost:3000/posts", setPosts);
     }
+    window.scrollTo(0, 0);
   }, [searchParams]);
 
   return (
     <>
-      <FilterSystem categories={categories} />
-      <button onClick={() => navigate(createURL("sort", "time", searchParams))}>By time</button>
-      <button onClick={() => navigate(createURL("sort", "favourite", searchParams))}>By favourite</button>
-      <main>
-        {posts 
+      <div className="controls">
+        <div className="controlsLeft">
+          <FilterSystem categories={categories} />
+          <SortingSystem />
+        </div>
+        <div className="controlsRight">
+          {user 
+            ? <Link to="/user/create">
+                <Fab color="primary" size="medium" aria-label="create" className="createPost">
+                <AddIcon />
+              </Fab></Link>
+            : null}
+        </div>
+      </div>
+      <section className="posts">
+        {posts
           ? posts.map((post) => (
               <Post key={post.id} post={post} />
             ))
           : null}
-      </main>
-      {user ? <Link to="/user/create">Create post</Link> : null}
+      </section>
     </>
   )
 }

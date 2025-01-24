@@ -1,14 +1,37 @@
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import { useContext } from "react";
+import { AuthContext } from "../contexts";
+import Cookies from "js-cookie";
+import "../styles/Header.css"
+import { Button } from "@mui/material";
 
 const Header = () => {
-  console.log("test");
+  const { user } = useContext(AuthContext);
+
   return (
-    <nav>
-      <Link to="/"><h1>Gossip</h1></Link>
+    <nav className="header">
+      <Link to="/" className="titleLink" onClick={() => window.scrollTo(0, 0)}><h1 className="title">Gossip</h1></Link>
       <SearchBar />
-      <Link to="/register">Sign up</Link>
-      <Link to="/login">Log In</Link>
+      {user
+        ? <Button 
+            className="logoutButton"
+            variant="outlined" 
+            color="secondary" 
+            onClick={() => {
+              Cookies.remove("token");
+              location.reload();
+          }}>
+            Log out
+          </Button>
+        : <div className="loginButtons">
+            <Button variant="outlined">
+              <Link to="/register">Sign up</Link>
+            </Button>
+            <Button variant="contained" color="primary">
+              <Link to="/login">Log In</Link>
+            </Button>
+          </div>}
     </nav>
   )
 }

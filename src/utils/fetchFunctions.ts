@@ -26,6 +26,33 @@ export async function fetchData<T, data>(
     }
 }
 
+//GET with authorization
+export async function fetchDataProtected<T, data>(
+  url: string,
+  token: string,
+  setFn: React.Dispatch<React.SetStateAction<T>>,
+  manipulateFn?: (data: data) => T) {
+    console.log(url);
+    try {
+      const response = await fetch(
+        url,
+        {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": token,
+          }
+        }
+      );
+      let resJson = await response.json();
+      if (manipulateFn) {resJson = manipulateFn(resJson)}
+      setFn(resJson);
+    } catch (err) {
+      console.log(err);
+    }
+}
+
 //POST with multiform/form-data and authorization
 export async function postFormProtected(url: string, token: string, formData: FormData) {
     console.log(url);

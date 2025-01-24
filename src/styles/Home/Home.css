@@ -1,0 +1,24 @@
+.controls {
+  margin: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controlsLeft {
+  display: flex;
+  gap: 8px;
+}
+
+Button.createPost {
+  z-index: 0;
+}
+
+.posts {
+  margin: 40px auto;
+  width: min(80%, 960px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+

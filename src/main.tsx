@@ -4,11 +4,11 @@ import App from './components/App';
 import Home from './pages/Home/Home';
 import './index.css'
 import PostPage from './pages/PostPage/PostPage';
-import SignupPage from './pages/UserPage/SignupPage';
-import LoginPage from './pages/UserPage/LoginPage';
-import UserPage from './pages/UserPage.tsx/UserPage';
-import CreatePost from './pages/UserPage.tsx/CreatePost';
-import EditPost from './pages/UserPage.tsx/EditPost';
+import SignupPage from './pages/Auth/SignupPage';
+import LoginPage from './pages/Auth/LoginPage';
+import UserPage from './pages/UserPage/UserPage';
+import CreatePost from './pages/UserPage/CreatePost';
+import EditPost from './pages/UserPage/EditPost';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
