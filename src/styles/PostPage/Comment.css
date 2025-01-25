@@ -8,6 +8,12 @@ div.commentBody {
   align-items: center;
 }
 
+p.commentText {
+  width: 100%;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
 div.commentFieldContainer {
   display: flex;
   flex-grow: 1;

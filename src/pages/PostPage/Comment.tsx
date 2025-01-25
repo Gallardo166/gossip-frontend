@@ -66,7 +66,7 @@ const Comment = ({ padding, comment }: CommentProps) => {
                   setIsEditing(false);
                 }}
                 handleSubmit={handleEdit} />
-            : <Typography sx={{color:"#d4d0d9"}}>
+            : <Typography className="commentText" sx={{color:"#d4d0d9"}}>
                 {body}
               </Typography>}
           {user
