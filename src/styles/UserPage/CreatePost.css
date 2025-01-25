@@ -1,0 +1,39 @@
+.createPostForm {
+  margin: 0 auto;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.titleField, .bodyField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+p.titleLength, p.bodyLength {
+  align-self: flex-end;
+}
+
+div.detailFields {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template: 2fr 3fr / 2fr 1fr;
+  column-gap: 16px;
+}
+
+div.imageField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.bodyField {
+  margin-top: 16px;
+}
+
+button.submitFormButton {
+  padding: 16px 24px;
+  align-self: center;
+}

@@ -50,78 +50,80 @@ const Comment = ({ padding, comment }: CommentProps) => {
   }
 
   return (
-    <div style={{paddingLeft: padding}}>
-      <Typography sx={{color:"white"}}>
-        {comment.username} &middot; {formatDate(comment.date)}
-      </Typography>
-      <div className="commentBody">
-        {isEditing
+    <>
+      <div className="commentContainer" style={{paddingLeft: padding}}>
+        <Typography sx={{color:"white"}}>
+          {comment.username} &middot; {formatDate(comment.date)}
+        </Typography>
+        <div className="commentBody">
+          {isEditing
+            ? <CommentField
+                placeholder="Edit your comment..."
+                value={edit}
+                setValue={setEdit}
+                handleClear={() => {
+                  setEdit(comment.body);
+                  setIsEditing(false);
+                }}
+                handleSubmit={handleEdit} />
+            : <Typography sx={{color:"#d4d0d9"}}>
+                {body}
+              </Typography>}
+          {user
+            ? <div className="commentActions">
+                <IconButton className="replyButton" onClick={() => {
+                  setIsReplying(true);
+                  setIsEditing(false);
+                }}>
+                  <ReplyIcon sx={{color:"white"}} />
+                </IconButton>
+                {user.username === comment.username
+                  ? <>
+                      <IconButton className="editCommentButton" onClick={() => {
+                        setIsEditing(true);
+                        setIsReplying(false);
+                        setReply("");
+                      }}>
+                        <EditIcon sx={{color:"white"}} />
+                      </IconButton>
+                      <DeleteModal token={token} comment={comment} />
+                    </>
+                : null}
+            </div>
+            : null}
+        </div>
+        {isReplying
           ? <CommentField
-              placeholder="Edit your comment..."
-              value={edit}
-              setValue={setEdit}
+              placeholder="Write a reply..."
+              value={reply}
+              setValue={setReply}
               handleClear={() => {
-                setEdit(comment.body);
-                setIsEditing(false);
+                setReply("");
+                setIsReplying(false);
               }}
-              handleSubmit={handleEdit} />
-          : <Typography sx={{color:"#d4d0d9"}}>
-              {body}
-            </Typography>}
-        {user
-          ? <div className="commentActions">
-              <IconButton className="replyButton" onClick={() => {
-                setIsReplying(true);
-                setIsEditing(false);
+              handleSubmit={handleReply} />
+          : null}
+        {comment.replyCount
+          ? !repliesOpen
+            ? <Button className="repliesButton" onClick={() => {
+                if (!replies) fetchData(`http://localhost:3000/comments?parentId=${comment.id}`, setReplies);
+                setRepliesOpen(true);
               }}>
-                <ReplyIcon sx={{color:"white"}} />
-              </IconButton>
-              {user.username === comment.username
-                ? <>
-                    <IconButton className="editCommentButton" onClick={() => {
-                      setIsEditing(true);
-                      setIsReplying(false);
-                      setReply("");
-                    }}>
-                      <EditIcon sx={{color:"white"}} />
-                    </IconButton>
-                    <DeleteModal token={token} comment={comment} />
-                  </>
-              : null}
-          </div>
+                Show {comment.replyCount} {comment.replyCount > 1 ? "Replies" : "Reply"}
+              </Button>
+            : <Button className="repliesButton" onClick={() => setRepliesOpen(false)}>
+                Hide {comment.replyCount} {comment.replyCount > 1 ? "Replies" : "Reply"}
+              </Button>
           : null}
+        <div className="replies">
+          {repliesOpen && replies
+            ? replies.map((reply, index) => (
+                <Comment padding="20px" key={index} comment={reply} />
+              ))
+            : null}
+        </div>
       </div>
-      {isReplying
-        ? <CommentField
-            placeholder="Write a reply..."
-            value={reply}
-            setValue={setReply}
-            handleClear={() => {
-              setReply("");
-              setIsReplying(false);
-            }}
-            handleSubmit={handleReply} />
-        : null}
-      {comment.replyCount
-        ? !repliesOpen
-          ? <Button className="repliesButton" onClick={() => {
-              if (!replies) fetchData(`http://localhost:3000/comments?parentId=${comment.id}`, setReplies);
-              setRepliesOpen(true);
-            }}>
-              Show {comment.replyCount} {comment.replyCount > 1 ? "Replies" : "Reply"}
-            </Button>
-          : <Button className="repliesButton" onClick={() => setRepliesOpen(false)}>
-              Hide {comment.replyCount} {comment.replyCount > 1 ? "Replies" : "Reply"}
-            </Button>
-        : null}
-      <div className="replies">
-        {repliesOpen && replies
-          ? replies.map((reply, index) => (
-              <Comment padding="20px" key={index} comment={reply} />
-            ))
-          : null}
-      </div>
-    </div>
+    </>
   )
 }
 

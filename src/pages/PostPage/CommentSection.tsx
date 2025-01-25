@@ -58,10 +58,10 @@ const CommentSection = ({commentCount, comments}: CommentSectionProps) => {
           : null}
       <div className="comments">
         {comments?.map((comment) => (
-          <>
+          <div key={comment.id}>
             <Divider sx={{bgcolor:"#757375"}} />
-            <Comment padding="0" key={comment.id} comment={comment} />
-          </>
+            <Comment padding="0" comment={comment} />
+          </div>
         ))}
       </div>
     </div>

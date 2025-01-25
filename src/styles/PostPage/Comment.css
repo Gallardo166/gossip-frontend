@@ -1,3 +1,7 @@
+div.commentContainer {
+  padding-top: 16px;
+}
+
 div.commentBody {
   display: flex;
   justify-content: space-between;

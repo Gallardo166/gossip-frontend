@@ -4,12 +4,13 @@ import { deleteProtected, fetchData, fetchDataProtected, postProtected } from ".
 import { PostType } from "../../types/Post";
 import parseComments from "../../utils/parseComments";
 import CommentSection from "./CommentSection";
-import { Chip, Divider, IconButton, Skeleton, Typography } from "@mui/material";
+import { Chip, Divider, IconButton, Typography } from "@mui/material";
 import "../../styles/PostPage/PostPage.css"
 import { formatDate } from "../../utils/formatDate";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { AuthContext } from "../../contexts";
+import LoadingPost from "./LoadingPost";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -84,7 +85,9 @@ const PostPage = () => {
             </div>
             <CommentSection commentCount={post.commentCount} comments={post.comments} />
           </div>
-        : <Skeleton />}
+        : <div className="post">
+            <LoadingPost />
+          </div>}
     </>
   )
 }

@@ -35,14 +35,12 @@ const Home = () => {
             <FilterSystem categories={categories} />
             <SortingSystem />
           </div>
-          <div className="controlsRight">
-            {user
-              ? <Link to="/user/create">
-                  <Fab color="primary" size="medium" aria-label="create" className="createPost">
-                  <AddIcon />
-                </Fab></Link>
-              : null}
-          </div>
+          {user
+            ? <Link to="/user/create">
+                <Fab color="primary" size="medium" aria-label="create" className="createPost">
+                <AddIcon />
+              </Fab></Link>
+            : null}
         </div>
         <section className="posts">
           {posts
