@@ -25,6 +25,7 @@ p.likeCount.MuiTypography-root {
 
 p.postBody {
   margin: 16px 0 32px 0;
+  white-space: pre-wrap;
 }
 
 img.postImage {

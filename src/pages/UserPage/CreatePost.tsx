@@ -14,8 +14,8 @@ const CreatePost = () => {
   const [body, setBody] = useState("");
   const {categories} = useOutletContext<{ categories: Category[] }>();
   const [category, setCategory] = useState(categories[0].id);
-  const [file, setFile] = useState<File | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const CreatePost = () => {
   }, []);
 
   return (
-      <form className="createPostForm" onSubmit={async (e) => {
+      <form className="postForm" onSubmit={async (e) => {
         e.preventDefault();
         const data = new FormData();
         data.append("title", title);
