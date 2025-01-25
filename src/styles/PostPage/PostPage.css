@@ -9,8 +9,16 @@ div.postContent {
   gap: 8px;
 }
 
-div.likeColumn {
+div.leftColumn {
   padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+div.likeSection {
+  margin-bottom: 12px;
 }
 
 div.contentColumn {

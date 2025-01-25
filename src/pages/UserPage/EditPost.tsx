@@ -38,7 +38,7 @@ const EditPost = () => {
       setLoading(true);
       await putFormProtected(import.meta.env.VITE_URL + "/post", token, data);
       setLoading(false);
-      navigate("/");
+      navigate(`/post/${post.id}`);
     }}>
       <div className="titleField">
           <TextField

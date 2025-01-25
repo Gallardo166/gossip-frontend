@@ -102,7 +102,7 @@ const Post = ({ post } : PostProps) => {
           </div>
           {post.username === user?.username
             ? <div className="cardActionsRight">
-                <Link onClick={(e) => e.stopPropagation()} to="/user/edit" state={{post}} className="editPostButton"><EditIcon /></Link>
+                <Link onClick={(e) => e.stopPropagation()} to="/user/edit" state={{ post }} className="editPostButton"><EditIcon /></Link>
                 <DeleteModal token={token} post={post} />
               </div>
             : null}

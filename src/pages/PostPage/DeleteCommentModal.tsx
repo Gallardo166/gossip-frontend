@@ -8,7 +8,7 @@ type DeleteModalProps = {
   token: string,
   comment: CommentType,
 }
-const DeleteModal = ({token, comment}: DeleteModalProps) => {
+const DeleteCommentModal = ({token, comment}: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
 
   function handleOpen(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -50,4 +50,4 @@ const DeleteModal = ({token, comment}: DeleteModalProps) => {
   )
 }
 
-export default DeleteModal;
+export default DeleteCommentModal;

@@ -9,7 +9,7 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import "../../styles/PostPage/Comment.css";
 import CommentField from "./CommentField";
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteModal from "./DeleteModal";
+import DeleteCommentModal from "./DeleteCommentModal";
 
 type CommentProps = {
   padding: string;
@@ -86,7 +86,7 @@ const Comment = ({ padding, comment }: CommentProps) => {
                       }}>
                         <EditIcon sx={{color:"white"}} />
                       </IconButton>
-                      <DeleteModal token={token} comment={comment} />
+                      <DeleteCommentModal token={token} comment={comment} />
                     </>
                 : null}
             </div>

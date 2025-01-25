@@ -11,6 +11,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { AuthContext } from "../../contexts";
 import LoadingPost from "./LoadingPost";
+import EditIcon from '@mui/icons-material/Edit';
+import { Link } from "react-router-dom";
+import DeletePostModal from "./DeletePostModal";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -52,8 +55,9 @@ const PostPage = () => {
             <Chip color="primary" label={post.category} sx={{fontSize: "14px"}} />
             <Divider sx={{bgcolor:"#757375"}} />
             <div className="postContent">
-              <div className="likeColumn">
-                <IconButton
+              <div className="leftColumn">
+                <div className="likeSection">
+                  <IconButton
                     className="likeButton"
                     aria-label="like"
                     onClick={(e) => {
@@ -75,6 +79,13 @@ const PostPage = () => {
                   <Typography className="likeCount" sx={{color: "#d4d0d9"}}>
                     {likeCount}
                   </Typography>
+                </div>
+                {post.username === user?.username
+                  ? <>
+                      <Link onClick={(e) => e.stopPropagation()} to="/user/edit" state={{ post: {...post, id } }} className="editPostButton"><EditIcon /></Link>
+                      <DeletePostModal token={token} id={Number(id)} />
+                    </>
+                  : null }
               </div>
               <div className="contentColumn">
                 <Typography className="postBody" sx={{color:"#d4d0d9"}}>
