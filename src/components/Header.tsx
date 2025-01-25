@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { useContext } from "react";
 import { AuthContext } from "../contexts";
@@ -8,6 +8,7 @@ import { Button } from "@mui/material";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
     <nav className="header">
@@ -20,7 +21,7 @@ const Header = () => {
             color="secondary" 
             onClick={() => {
               Cookies.remove("token");
-              location.reload();
+              navigate("/");
           }}>
             Log out
           </Button>

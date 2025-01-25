@@ -1,0 +1,8 @@
+.loginPrompt {
+  display: flex;
+  justify-content: center;
+}
+
+.loginLink {
+  text-decoration: underline;
+}
