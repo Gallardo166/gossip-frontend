@@ -25,12 +25,12 @@ const Header = () => {
             Log out
           </Button>
         : <div className="loginButtons">
-            <Button variant="outlined">
-              <Link to="/register">Sign up</Link>
-            </Button>
-            <Button variant="contained" color="primary">
-              <Link to="/login">Log In</Link>
-            </Button>
+            <Link to="/register">
+              <Button variant="outlined">Sign up</Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="contained" color="primary">Log In</Button>
+            </Link>
           </div>}
     </nav>
   )

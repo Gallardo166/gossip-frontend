@@ -158,7 +158,7 @@ export async function deleteProtected(url: string, token: string, data: object) 
 
 //authorization functions
 
-export async function handleSignup(formData: object) {
+export async function handleSignup(formData: object, setError: React.Dispatch<React.SetStateAction<{message: string;} | null>>) {
   try {
     const response = await fetch(
       "http://localhost:3000/user", 
@@ -172,8 +172,11 @@ export async function handleSignup(formData: object) {
       }
     );
     if (response.status === 400) {
-      throw new Error(await response.text());
+      const json = await response.json();
+      setError(json);
+      return false;
     }
+    return true;
   } catch (err) {
     console.log(err);
   }

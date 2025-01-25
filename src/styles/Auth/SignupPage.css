@@ -1,0 +1,16 @@
+.signupForm {
+  margin: 0 auto;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.usernameField, .passwordField, .confirmPasswordField {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupButton {
+  align-self: center;
+}

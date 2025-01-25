@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { handleLogin } from "../../utils/fetchFunctions";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../contexts";
@@ -8,6 +8,10 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const { setUser, setToken } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <form onSubmit={(e) => {

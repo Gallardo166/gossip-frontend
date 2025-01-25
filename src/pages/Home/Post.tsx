@@ -24,7 +24,7 @@ const Post = ({ post } : PostProps) => {
   const { user, token } = useContext(AuthContext);
   
   useEffect(() => {
-    fetchDataProtected(`http://localhost:3000/like?postId=${post.id}`, token, setIsLiked, (data: {isLiked: boolean}) => data.isLiked);
+    if (token) fetchDataProtected(`http://localhost:3000/like?postId=${post.id}`, token, setIsLiked, (data: {isLiked: boolean}) => data.isLiked);
   }, [token, post.id]);
 
   async function handleLike() {
