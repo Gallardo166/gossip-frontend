@@ -14,7 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteModal from "./DeleteModal";
 
 type PostProps = {
-  post: PostPreviewType
+  post: PostPreviewType;
 }
 
 const Post = ({ post } : PostProps) => {

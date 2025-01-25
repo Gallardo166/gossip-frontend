@@ -12,8 +12,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteModal from "./DeleteModal";
 
 type CommentProps = {
-  padding: string,
-  comment: CommentType
+  padding: string;
+  comment: CommentType;
 }
 
 const Comment = ({ padding, comment }: CommentProps) => {

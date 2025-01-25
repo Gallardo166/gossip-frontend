@@ -5,7 +5,7 @@ import { PostType } from "../../types/Post";
 import parseComments from "../../utils/parseComments";
 import CommentSection from "./CommentSection";
 import { Chip, Divider, IconButton, Typography } from "@mui/material";
-import "../../styles/PostPage/PostPage.css"
+import "../../styles/PostPage/PostPage.css";
 import { formatDate } from "../../utils/formatDate";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';

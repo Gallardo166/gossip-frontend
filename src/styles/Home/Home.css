@@ -22,3 +22,8 @@ Button.createPost {
   gap: 16px;
 }
 
+.noPosts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

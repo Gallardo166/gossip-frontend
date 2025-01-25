@@ -10,8 +10,8 @@ import { Button, Divider, Typography } from "@mui/material";
 import CommentField from "./CommentField";
 
 type CommentSectionProps = {
-  commentCount: number,
-  comments: CommentType[] | null
+  commentCount: number;
+  comments: CommentType[] | null;
 }
 
 const CommentSection = ({commentCount, comments}: CommentSectionProps) => {

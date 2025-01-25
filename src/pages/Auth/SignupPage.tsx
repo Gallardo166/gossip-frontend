@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
 import { handleLogin, handleSignup } from "../../utils/fetchFunctions";
 import { Button, TextField, Typography } from "@mui/material";
-import "../../styles/Auth/SignupPage.css"
+import "../../styles/Auth/SignupPage.css";
 import { AuthContext } from "../../contexts";
 import { useNavigate } from "react-router";
 

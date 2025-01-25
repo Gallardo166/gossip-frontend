@@ -5,9 +5,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { PostPreviewType } from "../../types/PostPreview";
 
 type DeleteModalProps = {
-  token: string,
-  post: PostPreviewType,
+  token: string;
+  post: PostPreviewType;
 }
+
 const DeleteModal = ({token, post}: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
 
@@ -22,7 +23,7 @@ const DeleteModal = ({token, post}: DeleteModalProps) => {
   }
 
   async function handleDelete() {
-    await deleteProtected(import.meta.env.VITE_URL + "/post", token, { id: post.id.toString() });
+    await deleteProtected(import.meta.env.VITE_URL + "/post", token, { id: post.id });
     location.reload();
   }
 

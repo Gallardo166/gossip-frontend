@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import { useContext } from "react";
 import { AuthContext } from "../contexts";
 import Cookies from "js-cookie";
-import "../styles/Header.css"
+import "../styles/Header.css";
 import { Button } from "@mui/material";
 
 const Header = () => {

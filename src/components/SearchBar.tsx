@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import createURL from "../utils/createURL";
 import { IconButton } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import "../styles/SearchBar.css"
+import "../styles/SearchBar.css";
 import SearchField from "./SearchField";
 
 const SearchBar = () => {
@@ -25,4 +25,4 @@ const SearchBar = () => {
   )
 }
 
-export default SearchBar
+export default SearchBar;

@@ -1,5 +1,5 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material"
-import { useState } from "react"
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material";
+import { useState } from "react";
 import { deleteProtected } from "../../utils/fetchFunctions";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CommentType } from "../../types/Comment";

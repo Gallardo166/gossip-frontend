@@ -1,9 +1,9 @@
 import { Select, SelectChangeEvent } from "@mui/material";
 
 type CustomSelectProps = {
-  children: React.ReactNode,
-  value: string,
-  onChange: (e: SelectChangeEvent<string>) => void
+  children: React.ReactNode;
+  value: string;
+  onChange: (e: SelectChangeEvent<string>) => void;
 }
 
 const CustomSelect = ({ children, value, onChange }: CustomSelectProps) => {

@@ -2,8 +2,8 @@ export default function createURL(key: string, value: string, searchParams: URLS
   if (key) searchParams.set(key, value);
   if (!value) searchParams.delete(key);
   if (Array.from(searchParams.keys()).length === 0) {
-    return "/"
+    return "/";
   } else {
-    return `/?${searchParams.toString()}`
+    return `/?${searchParams.toString()}`;
   }
 }

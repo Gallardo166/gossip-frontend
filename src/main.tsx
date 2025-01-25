@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import App from './components/App';
 import Home from './pages/Home/Home';
-import './index.css'
+import './index.css';
 import PostPage from './pages/PostPage/PostPage';
 import SignupPage from './pages/Auth/SignupPage';
 import LoginPage from './pages/Auth/LoginPage';

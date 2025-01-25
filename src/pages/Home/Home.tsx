@@ -9,9 +9,9 @@ import { Category } from "../../types/Category";
 import { AuthContext } from "../../contexts";
 import { Link } from "react-router-dom";
 import "../../styles/Home/Home.css";
-import { Fab } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import LoadingPosts from "./LoadingPosts";
+import SickIcon from '@mui/icons-material/Sick';
 
 const Home = () => {
   const [posts, setPosts] = useState<PostPreviewType[]>([]);
@@ -26,6 +26,7 @@ const Home = () => {
       fetchData(import.meta.env.VITE_URL + "/posts", setPosts);
     }
     window.scrollTo(0, 0);
+    document.title = "Gossip";
   }, [searchParams]);
 
   return (
@@ -47,7 +48,10 @@ const Home = () => {
             ? posts.map((post) => (
                 <Post key={post.id} post={post} />
               ))
-            : <LoadingPosts />}
+            : <div className="noPosts">
+                <SickIcon />
+                <Typography>No posts found!</Typography>
+              </div>}
         </section>
     </>
   )

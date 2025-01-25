@@ -2,8 +2,8 @@ import { Button, TextField } from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
 
 type SearchFieldProps = {
-  titleQuery: string,
-  setTitleQuery: React.Dispatch<React.SetStateAction<string>>,
+  titleQuery: string;
+  setTitleQuery: React.Dispatch<React.SetStateAction<string>>;
   handleSearch: (titleQuery: string) => void;
 }
 

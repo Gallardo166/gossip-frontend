@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
 import { handleLogin } from "../../utils/fetchFunctions";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../contexts";
 import { Button, TextField, Typography } from "@mui/material";
-import "../../styles/Auth/LoginPage.css"
+import "../../styles/Auth/LoginPage.css";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");

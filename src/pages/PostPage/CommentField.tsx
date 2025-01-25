@@ -2,11 +2,11 @@ import { Button, IconButton, TextField } from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
 
 type CommentFieldProps = {
-  placeholder: string,
-  value: string,
-  setValue: React.Dispatch<React.SetStateAction<string>>,
-  handleClear: () => void,
-  handleSubmit: () => Promise<void>,
+  placeholder: string;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  handleClear: () => void;
+  handleSubmit: () => Promise<void>;
 }
 
 const CommentField = ({placeholder, value, setValue, handleClear, handleSubmit }: CommentFieldProps) => {

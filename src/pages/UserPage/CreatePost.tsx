@@ -7,7 +7,7 @@ import { getDate } from "../../utils/formatDate";
 import { Button, IconButton, MenuItem, Select, TextField, Typography } from "@mui/material";
 import ImageIcon from '@mui/icons-material/Image';
 import ClearIcon from '@mui/icons-material/Clear';
-import "../../styles/UserPage/CreatePost.css"
+import "../../styles/UserPage/CreatePost.css";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -20,7 +20,7 @@ const CreatePost = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }, []);
 
   return (
