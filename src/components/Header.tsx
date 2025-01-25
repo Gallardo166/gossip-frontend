@@ -22,6 +22,7 @@ const Header = () => {
             onClick={() => {
               Cookies.remove("token");
               navigate("/");
+              location.reload();
           }}>
             Log out
           </Button>
