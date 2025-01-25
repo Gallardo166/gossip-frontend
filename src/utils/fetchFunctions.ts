@@ -185,7 +185,8 @@ export async function handleSignup(formData: object, setError: React.Dispatch<Re
 export async function handleLogin(
   formData: object, 
   setUser: React.Dispatch<React.SetStateAction<User | null>>, 
-  setToken: React.Dispatch<React.SetStateAction<string>>) {
+  setToken: React.Dispatch<React.SetStateAction<string>>,
+  setError: React.Dispatch<React.SetStateAction<{message: string;} | null>>) {
     try {
       const response = await fetch(
         "http://localhost:3000/login",
@@ -199,13 +200,15 @@ export async function handleLogin(
         }
       );
       if (response.status === 400) {
-        throw new Error(await response.text());
+        const json = await response.json();
+        setError(json);
+        return false;
       }
       const resJson = await response.json();
-      console.log(resJson);
-      Cookies.set("token", resJson.tokenString, { expires: 7 })
+      Cookies.set("token", resJson.tokenString, { expires: 7 });
       setToken(resJson.tokenString);
-      setUser({ username: resJson.username, password: resJson.password })
+      setUser({ username: resJson.username, password: resJson.password });
+      return true;
     } catch (err) {
       console.log(err);
     }

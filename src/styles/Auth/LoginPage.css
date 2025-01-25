@@ -1,4 +1,4 @@
-.signupForm {
+.loginForm {
   max-width: 640px;
   margin: 0 auto;
   padding: 48px;
@@ -7,11 +7,6 @@
   gap: 16px;
 }
 
-.usernameField, .passwordField, .confirmPasswordField {
-  display: flex;
-  flex-direction: column;
-}
-
-.signupButton {
+button.loginButton {
   align-self: center;
 }

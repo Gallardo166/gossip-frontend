@@ -32,9 +32,11 @@ const SignupPage = () => {
       e.preventDefault();
       setLoading(true);
       const success = await handleSignup({username, password, confirmPassword}, setError);
-      if (setUser && setToken) await handleLogin({username, password}, setUser, setToken)
       setLoading(false);
-      if (success) navigate("/");
+      if (success) {
+        if (setUser && setToken) await handleLogin({username, password}, setUser, setToken, setError)
+        navigate("/");
+      }
     }}>
       <div className="usernameField">
         <TextField
