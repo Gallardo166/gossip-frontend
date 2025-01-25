@@ -22,7 +22,7 @@ const DeleteModal = ({token, post}: DeleteModalProps) => {
   }
 
   async function handleDelete() {
-    await deleteProtected("http://localhost:3000/post", token, { id: post.id.toString() });
+    await deleteProtected(import.meta.env.VITE_URL + "/post", token, { id: post.id.toString() });
     location.reload();
   }
 

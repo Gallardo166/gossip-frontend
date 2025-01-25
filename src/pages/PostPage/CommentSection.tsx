@@ -26,7 +26,7 @@ const CommentSection = ({commentCount, comments}: CommentSectionProps) => {
       postId: Number(id),
       date: getDate(),
     };
-    await postProtected("http://localhost:3000/comment", token, data);
+    await postProtected(import.meta.env.VITE_URL + "/comment", token, data);
     location.reload();
   }
 

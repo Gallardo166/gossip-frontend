@@ -22,7 +22,7 @@ const DeleteModal = ({token, comment}: DeleteModalProps) => {
   }
 
   async function handleDelete() {
-    await deleteProtected("http://localhost:3000/comment", token, { id: comment.id });
+    await deleteProtected(import.meta.env.VITE_URL + "/comment", token, { id: comment.id });
     location.reload();
   }
 

@@ -24,7 +24,7 @@ const App = () => {
   
   useEffect(() => {
     if (token) getUser(token, setUser);
-    fetchData("http://localhost:3000/categories", setCategories);
+    fetchData(import.meta.env.VITE_URL + "/categories", setCategories);
   }, [token]);
 
   return (

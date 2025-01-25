@@ -34,7 +34,7 @@ const Comment = ({ padding, comment }: CommentProps) => {
       postId: Number(id),
       date: getDate(),
     };
-    await postProtected(`http://localhost:3000/comment?parentId=${comment.id}`, token, data);
+    await postProtected(`${import.meta.env.VITE_URL}/comment?parentId=${comment.id}`, token, data);
     location.reload();
   }
 
@@ -44,7 +44,7 @@ const Comment = ({ padding, comment }: CommentProps) => {
       body: edit,
       date: getDate(),
     };
-    await putProtected("http://localhost:3000/comment", token, data);
+    await putProtected(import.meta.env.VITE_URL + "/comment", token, data);
     setBody(edit);
     setIsEditing(false);
   }
@@ -106,7 +106,7 @@ const Comment = ({ padding, comment }: CommentProps) => {
         {comment.replyCount
           ? !repliesOpen
             ? <Button className="repliesButton" onClick={() => {
-                if (!replies) fetchData(`http://localhost:3000/comments?parentId=${comment.id}`, setReplies);
+                if (!replies) fetchData(`${import.meta.env.VITE_URL}/comments?parentId=${comment.id}`, setReplies);
                 setRepliesOpen(true);
               }}>
                 Show {comment.replyCount} {comment.replyCount > 1 ? "Replies" : "Reply"}

@@ -21,8 +21,6 @@ const EditPost = () => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  console.log(post.category);
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, []);
@@ -38,7 +36,7 @@ const EditPost = () => {
       data.append("category", categories.filter(category => category.name === categoryName)[0].id.toString());
       data.append("date", getDate());
       setLoading(true);
-      await putFormProtected("http://localhost:3000/post", token, data);
+      await putFormProtected(import.meta.env.VITE_URL + "/post", token, data);
       setLoading(false);
       navigate("/");
     }}>

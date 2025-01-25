@@ -33,7 +33,7 @@ const CreatePost = () => {
         data.append("category", category.toString());
         data.append("date", getDate());
         setLoading(true);
-        await postFormProtected("http://localhost:3000/post", token, data);
+        await postFormProtected(import.meta.env.VITE_URL + "/post", token, data);
         setLoading(false);
         navigate("/");
       }}>

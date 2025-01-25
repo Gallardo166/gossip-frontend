@@ -6,7 +6,6 @@ export async function fetchData<T, data>(
   url: string,
   setFn: React.Dispatch<React.SetStateAction<T>>,
   manipulateFn?: (data: data) => T) {
-    console.log("test");
     try {
       const response = await fetch(
         url,
@@ -32,7 +31,6 @@ export async function fetchDataProtected<T, data>(
   token: string,
   setFn: React.Dispatch<React.SetStateAction<T>>,
   manipulateFn?: (data: data) => T) {
-    console.log(url);
     try {
       const response = await fetch(
         url,
@@ -55,7 +53,6 @@ export async function fetchDataProtected<T, data>(
 
 //POST with multiform/form-data and authorization
 export async function postFormProtected(url: string, token: string, formData: FormData) {
-    console.log(url);
     try {
       await fetch(
         url,
@@ -75,7 +72,6 @@ export async function postFormProtected(url: string, token: string, formData: Fo
 
 //POST with application/json and authorization
 export async function postProtected(url: string, token: string, data: object) {
-  console.log(url);
   try {
     await fetch(
       url,
@@ -96,7 +92,6 @@ export async function postProtected(url: string, token: string, data: object) {
 
 //PUT with multiform/form-data and authorization
 export async function putFormProtected(url: string, token: string, formData: FormData) {
-  console.log(url);
   try {
     await fetch(
       url,
@@ -116,7 +111,6 @@ export async function putFormProtected(url: string, token: string, formData: For
 
 //PUT with application/json and authorization
 export async function putProtected(url: string, token: string, data: object) {
-  console.log(url);
   try {
     await fetch(
       url,
@@ -137,7 +131,6 @@ export async function putProtected(url: string, token: string, data: object) {
 
 //DELETE with authorization
 export async function deleteProtected(url: string, token: string, data: object) {
-  console.log(url);
   try {
     await fetch(
       url,
@@ -161,7 +154,7 @@ export async function deleteProtected(url: string, token: string, data: object) 
 export async function handleSignup(formData: object, setError: React.Dispatch<React.SetStateAction<{message: string;} | null>>) {
   try {
     const response = await fetch(
-      "http://localhost:3000/user", 
+      import.meta.env.VITE_URL + "/user", 
       {
         method: "POST",
         mode: "cors",
@@ -189,7 +182,7 @@ export async function handleLogin(
   setError: React.Dispatch<React.SetStateAction<{message: string;} | null>>) {
     try {
       const response = await fetch(
-        "http://localhost:3000/login",
+        import.meta.env.VITE_URL + "/login",
         {
           method: "POST",
           mode: "cors",
@@ -217,7 +210,7 @@ export async function handleLogin(
 export async function getUser<T>(token: string, setFn: React.Dispatch<React.SetStateAction<T>>) {
   try {
     const response = await fetch(
-      "http://localhost:3000/user",
+      import.meta.env.VITE_URL + "/user",
       {
         method: "GET",
         mode: "cors",

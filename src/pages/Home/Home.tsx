@@ -21,9 +21,9 @@ const Home = () => {
 
   useEffect(() => {
     if (searchParams.toString()) {
-      fetchData(`http://localhost:3000/posts?${searchParams.toString()}`, setPosts);
+      fetchData(`${import.meta.env.VITE_URL}/posts?${searchParams.toString()}`, setPosts);
     } else {
-      fetchData("http://localhost:3000/posts", setPosts);
+      fetchData(import.meta.env.VITE_URL + "/posts", setPosts);
     }
     window.scrollTo(0, 0);
   }, [searchParams]);

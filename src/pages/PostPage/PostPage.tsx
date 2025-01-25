@@ -21,20 +21,20 @@ const PostPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData(`http://localhost:3000/post/${id}`, setPost, parseComments);
-    fetchDataProtected(`http://localhost:3000/like?postId=${id}`, token, setIsLiked, (data: {isLiked: boolean}) => data.isLiked);
+    fetchData(`${import.meta.env.VITE_URL}/post/${id}`, setPost, parseComments);
+    fetchDataProtected(`${import.meta.env.VITE_URL}/like?postId=${id}`, token, setIsLiked, (data: {isLiked: boolean}) => data.isLiked);
     setLikeCount(post?.likeCount);
     window.scrollTo(0, 0);
   }, [id, post?.likeCount, token]);
 
   async function handleLike() {
-    postProtected(`http://localhost:3000/like?postId=${id}`, token, {});
+    postProtected(`${import.meta.env.VITE_URL}/like?postId=${id}`, token, {});
     setLikeCount(likeCount + 1);
     setIsLiked(true);
   }
 
   async function handleUnlike() {
-    deleteProtected(`http://localhost:3000/like?postId=${id}`, token, {});
+    deleteProtected(`${import.meta.env.VITE_URL}/like?postId=${id}`, token, {});
     setLikeCount(likeCount - 1);
     setIsLiked(false);
   }

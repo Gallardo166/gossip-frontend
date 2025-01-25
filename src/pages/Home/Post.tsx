@@ -24,17 +24,17 @@ const Post = ({ post } : PostProps) => {
   const { user, token } = useContext(AuthContext);
   
   useEffect(() => {
-    if (token) fetchDataProtected(`http://localhost:3000/like?postId=${post.id}`, token, setIsLiked, (data: {isLiked: boolean}) => data.isLiked);
+    if (token) fetchDataProtected(`${import.meta.env.VITE_URL}/like?postId=${post.id}`, token, setIsLiked, (data: {isLiked: boolean}) => data.isLiked);
   }, [token, post.id]);
 
   async function handleLike() {
-    postProtected(`http://localhost:3000/like?postId=${post.id}`, token, {});
+    postProtected(`${import.meta.env.VITE_URL}/like?postId=${post.id}`, token, {});
     setLikeCount(likeCount + 1);
     setIsLiked(true);
   }
 
   async function handleUnlike() {
-    deleteProtected(`http://localhost:3000/like?postId=${post.id}`, token, {});
+    deleteProtected(`${import.meta.env.VITE_URL}/like?postId=${post.id}`, token, {});
     setLikeCount(likeCount - 1);
     setIsLiked(false);
   }
